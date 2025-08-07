@@ -21,6 +21,18 @@ body {
   overflow-x: hidden;
 }
 
+/* Fade-in animation styles */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s cubic-bezier(.77,0,.18,1), transform 1.2s cubic-bezier(.77,0,.18,1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Subtle background animation */
 body::before {
   content: '';
@@ -130,65 +142,16 @@ header {
   box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 2rem 0 1rem 0;
-  font-size: 1.1rem;
-  background: #fff;
-  border-bottom: 1px solid #eee;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  opacity: 0;
-  transform: translateY(-30px);
-  transition: opacity 1s cubic-bezier(.77,0,.18,1), transform 1s cubic-bezier(.77,0,.18,1);
-}
-
-nav.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-nav a {
-  color: #111;
-  text-decoration: none;
-  position: relative;
-  padding: 0.2em 0.5em;
-  transition: color 0.3s;
-}
-nav a::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 2px;
-  background: #111;
-  transition: width 0.3s;
-  margin: 0 auto;
-}
-nav a:hover::after {
-  width: 100%;
-}
-nav a:hover {
-  color: #000;
-}
+/* Remove conflicting nav styles and keep consistent navbar styling */
 
 
-main {
+main.center {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 60vh;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1.2s cubic-bezier(.77,0,.18,1), transform 1.2s cubic-bezier(.77,0,.18,1);
-}
-main.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .hero {
