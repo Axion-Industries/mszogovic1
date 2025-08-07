@@ -1,0 +1,9 @@
+I want to make a minimalistic website that is like a portfolio. It is for a teacher named Ms. Zogovic. Make the following pages complete:
+Home: Basic Welcome Page
+AP Stats: Links, FRQ button (that leads to separate frq page), lessons
+Algebra 2 Honors= Links, Additional Button(put no function for now), Lessons
+Algebra 2 Regular=Links, Lessons
+FRQ= make a sample frq page.
+
+Please do all this to the best of your ability, keep the website strictly black and white, but add lots of animations. Make a basic footer.
+can you keep everything in the root path, delete ms-zogovic-portfolio nad ms-zogovic-profolio-1, just put all the files in root or create necesary folders (assets, src) in root
