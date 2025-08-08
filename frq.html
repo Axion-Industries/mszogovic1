@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FRQ | Ms. Zogovic</title>
+  <title>FRQ's | Ms. Zogovic</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,6 +20,7 @@
       </ul>
     </nav>
   </header>
+
   <main class="center fade-in">
     <section class="hero">
       <h1>Sample FRQ</h1>
@@ -30,11 +32,33 @@
           <p>Probability = (5/10) * (4/9) = 2/9</p>
         </details>
       </section>
+      <h1>FRQ's</h1>
+
+      <!-- Mini Navigation -->
+      <div class="mini-nav">
+        <button class="nav-btn active" data-class="ap-stats">AP Stats</button>
+        <button class="nav-btn" data-class="algebra2-honors">Algebra 2 Honors</button>
+        <button class="nav-btn" data-class="algebra2-regular">Algebra 2 Regular</button>
+      </div>
+
+      <!-- Dynamic Content Container -->
+      <div class="frq-content" id="frq-content">
+        <!-- Content will be populated by JavaScript -->
+      </div>
     </section>
   </main>
+
   <footer class="footer fade-in">
     <p>&copy; 2025 Ms. Zogovic. All rights reserved.</p>
+    <div class="footer-content">
+      <a href="mailto:kzogovic@doralacademyprep.org" class="gmail-link">
+        <img src="gmail-icon.png" alt="Email Ms. Zogovic" class="gmail-icon">
+      </a>
+      <a href="credits.html" class="btn">Credits</a>
+    </div>
   </footer>
   <script src="main.js"></script>
+
+  <script src="frq.js"></script>
 </body>
 </html>
