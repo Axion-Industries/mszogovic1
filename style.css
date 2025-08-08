@@ -1,3 +1,22 @@
+/* CSS Custom Properties for consistent styling */
+:root {
+    --link-color: #000000;
+    --link-underline-color: #111111;
+    --button-border-color: #111111;
+    --navbar-selected-bg: #e6e6e6;
+    --text-color: #000000;
+    --background-color: #ffffff;
+    --border-color: #cccccc;
+    --hover-color: #f0f0f0;
+    --focus-color: #e6e6e6;
+    --font-family: 'Times New Roman', serif;
+    --font-size-base: 16px;
+    --line-height: 1.6;
+    --max-width: 800px;
+    --transition-duration: 220ms;
+    --transition-timing: cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
 /* Reset and base styles for text document look */
 * {
     margin: 0;
@@ -6,12 +25,12 @@
 }
 
 body {
-    font-family: 'Times New Roman', serif;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #000;
-    background: #fff;
-    max-width: 800px;
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height);
+    color: var(--text-color);
+    background: var(--background-color);
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: 40px 20px;
 }
@@ -29,7 +48,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 40px;
 }
 
@@ -46,9 +65,9 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #000;
+    color: var(--link-color);
     font-size: 16px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-duration) var(--transition-timing);
     position: relative;
 }
 
@@ -71,10 +90,26 @@ body {
     font-weight: normal;
 }
 
+.welcome-section h2 {
+    font-size: 24px;
+    margin: 30px 0 15px 0;
+    font-weight: normal;
+}
+
 .welcome-section p {
     font-size: 18px;
     margin-bottom: 15px;
     text-align: justify;
+    max-width: 65ch;
+}
+
+.welcome-section ul {
+    margin: 15px 0;
+    padding-left: 40px;
+}
+
+.welcome-section li {
+    margin-bottom: 8px;
 }
 
 /* Box styles for links and lessons */
@@ -85,10 +120,11 @@ body {
 }
 
 .box-item {
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 20px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-duration) var(--transition-timing);
+    cursor: pointer;
 }
 
 .box-item:hover {
@@ -106,8 +142,9 @@ body {
 }
 
 .box-item a {
-    color: #000;
-    text-decoration: underline;
+    color: var(--link-color);
+    text-decoration: none;
+    position: relative;
 }
 
 /* PDF container styles */
@@ -116,7 +153,7 @@ body {
 }
 
 .pdf-item {
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -134,7 +171,8 @@ body {
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: #000;
+    color: var(--link-color);
+    position: relative;
 }
 
 .pdf-icon {
@@ -142,34 +180,75 @@ body {
     height: 20px;
 }
 
-/* Button styles */
-.btn {
-    display: inline-block;
-    padding: 8px 16px;
-    background: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+/* Enhanced link styling with sliding underline animation */
+a {
+    color: var(--link-color);
     text-decoration: none;
-    color: #000;
-    font-size: 14px;
-    transition: all 0.3s ease;
+    position: relative;
 }
 
-.btn:hover {
-    background: #e0e0e0;
+a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 0;
+    background: var(--link-underline-color);
+    transition: width var(--transition-duration) var(--transition-timing);
+}
+
+a:hover::after,
+a:focus::after {
+    width: 100%;
+}
+
+/* Button styles with animated fill */
+.btn, .animated-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid var(--button-border-color);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    transition: all var(--transition-duration) var(--transition-timing);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before, .animated-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--button-border-color);
+    transition: left var(--transition-duration) var(--transition-timing);
+    z-index: -1;
+}
+
+.btn:hover::before, .animated-btn:hover::before {
+    left: 0;
+}
+
+.btn:hover, .animated-btn:hover {
+    color: var(--background-color);
 }
 
 /* Footer styles */
 footer {
     margin-top: 60px;
     padding-top: 20px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--border-color);
     text-align: center;
 }
 
 .footer-content {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
@@ -178,44 +257,45 @@ footer {
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-duration) var(--transition-timing);
 }
 
 .gmail-icon:hover {
     transform: scale(1.1);
 }
 
-/* Underline animation for text */
-.underline-animation {
-    position: relative;
-    display: inline-block;
+/* Mini navbar styles */
+.mini-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin: 30px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.underline-animation::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: 0;
-    left: 0;
-    background-color: #000;
-    transition: width 0.3s ease;
+.mini-nav button {
+    padding: 12px 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-timing);
+    font-family: var(--font-family);
+    font-size: 16px;
 }
 
-.underline-animation:hover::after {
-    width: 100%;
+.mini-nav button:hover {
+    background-color: var(--hover-color);
 }
 
-/* Back link */
-.back-link {
-    display: inline-block;
-    margin-top: 30px;
-    color: #000;
-    text-decoration: none;
+.mini-nav button.active {
+    background-color: var(--navbar-selected-bg);
 }
 
-.back-link:hover {
-    text-decoration: underline;
+.mini-nav button:focus {
+    outline: 2px solid var(--link-underline-color);
+    outline-offset: -2px;
 }
 
 /* Responsive design */
@@ -233,4 +313,78 @@ footer {
         flex-wrap: wrap;
         justify-content: center;
     }
+    
+    .welcome-section p {
+        font-size: 16px;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+    
+    a::after,
+    .btn::before,
+    .animated-btn::before {
+        transition: none;
+    }
+}
+
+/* Focus styles for keyboard navigation */
+a:focus,
+button:focus,
+.nav-links a:focus {
+    outline: 2px solid var(--link-underline-color);
+    outline-offset: 2px;
+}
+
+/* FRQ content sections */
+.frq-content {
+    margin: 30px 0;
+}
+
+.frq-question {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.frq-question h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.frq-question p {
+    margin-bottom: 10px;
+}
+
+details {
+    margin-top: 15px;
+}
+
+summary {
+    cursor: pointer;
+    padding: 10px;
+    background: var(--hover-color);
+    border-radius: 4px;
+}
+
+summary:hover {
+    background: var(--focus-color);
+}
+
+/* Back link */
+.back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
 }
