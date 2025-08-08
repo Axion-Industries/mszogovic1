@@ -4,10 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AP Stats | Ms. Zogovic</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
     <nav class="navbar fade-in">
       <div class="logo">Ms. Zogovic</div>
       <ul class="nav-links">
@@ -20,10 +16,49 @@
     </nav>
   </header>
   <main class="center fade-in">
-    <section class="hero">
-      <h1>AP Statistics</h1>
+
+      <div class="hero-btns" style="margin-bottom:2em;">
+        <button class="animated-btn" disabled>Additional Button</button>
+      </div>
+          <li><a href="https://www.khanacademy.org/math/ap-statistics" target="_blank">Khan Academy AP Statistics</a></li>
+          <li><a href="https://www.collegeboard.org/ap-statistics" target="_blank">College Board AP Statistics</a></li>
+        </ul>
+      </section>
       
       <section>
-        <h2>Links</h2>
-        <ul>
-          <li><a href="https://apcentral.collegeboard.org/courses/ap-statistics" target="_blank" rel="noopener noreferrer">AP Central</a></li>
+        <h2>Lessons</h2>
+        <div class="box-container">
+          <div class="box-item" onclick="window.location.href='ap-statistics-pdf.html'">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="pdf-icon.png" alt="PDF Icon" class="pdf-icon">
+              <div>
+                <h3>AP Statistics Course Materials</h3>
+                <p>Complete AP Statistics course content including data analysis, probability, and statistical inference.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="box-item" onclick="window.location.href='algebra-2-honors-pdf.html'">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="pdf-icon.png" alt="PDF Icon" class="pdf-icon">
+              <div>
+                <h3>Algebra 2 Honors Materials</h3>
+                <p>Advanced algebra concepts including quadratics, polynomials, and exponential functions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <footer class="footer fade-in">
+    <div class="footer-content">
+      <p>&copy; 2025 Ms. Zogovic. All rights reserved.</p>
+      <a href="mailto:mszogovic@example.com">
+        <img src="gmail-icon.png" alt="Email" class="gmail-icon">
+      </a>
+    </div>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1339 @@
+Paste these 10 questions in for AP Statistics: 
+
+1. Sampling Distribution & Central Limit Theorem
+Question: A large city survey sampled 20 twelfth-grade students' scores (out of 46) on an economics test. Given the data list, (a) construct a stemplot; (b) describe the distribution’s main features; (c) explain why reporting only a measure of center would be misleading.
+Answer:
+(a) You’d create a stemplot using the given scores (e.g., stems 0–4).
+(b) Description should mention shape (possibly skewed/right due to few high scores), range, clusters, gaps, outliers.
+(c) Because the distribution is varied and likely skewed, center alone (mean or median) wouldn’t capture spread or shape, leading to misrepresentation. 
+mymathscloud.com
+
+2. Probability & Binomial Reasoning
+Question: The relative frequency distribution shows the number of pets (dogs + cats) per household. (a) Find the probability a randomly selected household violates a 3-pet limit law; (b) if 10 households are randomly chosen, what’s the probability exactly 2 violate the law?; (c) describe the sampling distribution of the mean number of pets for 150 households.
+Answer:
+(a) Sum probabilities for households owning 4+ pets.
+(b) Use the binomial formula: n=10, p = probability from (a), so 
+𝑃
+(
+2
+)
+=
+(
+10
+2
+)
+𝑝
+2
+(
+1
+−
+𝑝
+)
+8
+P(2)=( 
+2
+10
+​
+ )p 
+2
+ (1−p) 
+8
+ .
+(c) By CLT: approximately normal, center = population mean, spread = population SD / √150. 
+mymathscloud.com
+
+3. Experimental Design – Block Randomization
+Question: In a heat gain experiment comparing window types A and B with 12 positions in a house, (a) devise appropriate blocks for a randomized block design; (b) describe how to assign treatments (window types) to boxes.
+Answer:
+(a) Block by house side or matched positions (e.g., north wall vs. south wall) to control for exposure.
+(b) Randomly assign types A/B within each block (e.g., flip a coin for each pair). 
+mymathscloud.com
+
+4. Definition of Standard Deviation & Confidence Intervals
+Question: (From 2007 scoring guidelines) Explain what 
+𝑠
+=
+2.141
+s=2.141 indicates in context, and use that to construct and interpret a confidence interval.
+Answer:
+Standard deviation 
+𝑠
+=
+2.141
+s=2.141 reflects the typical deviation of discoloration ratings from the mean in the control group. The CI centered on the sample mean ± (critical value × 
+𝑠
+/
+𝑛
+s/ 
+n
+​
+ ) gives a plausible range for the population mean discoloration. 
+secure-media.collegeboard.org
+
+5. Hypothesis Testing & p-Value Interpretation
+Question: Researchers test whether drivers are more distracted when using a device. Given a p-value of 0.0683, interpret it and state a conclusion in everyday language.
+Answer:
+The p-value 0.0683 is the chance of observing the data (or more extreme) if there really is no increased distraction. Since it's above common α (0.05), we fail to reject H₀—there's not strong evidence that the device increases distraction. 
+secure-media.collegeboard.org
+
+6. Geometric Distribution Expectation (2024 FRQ #4)
+Question: Let Y be the number of geodes opened until (and including) the first red crystal appears, with given probabilities for y = 1, 2, 3, 4. (i) Compute mean of Y; (ii) interpret the mean.
+Answer:
+(i) Mean 
+𝜇
+=
+∑
+𝑦
+⋅
+𝑃
+(
+𝑌
+=
+𝑦
+)
+μ=∑y⋅P(Y=y).
+(ii) It represents the average number of geodes one would expect to open before finding a red crystal. 
+AP Central
+
+7. Conditional Probability (2024 FRQ #5b)
+Question: Among collectors of baseball cards, given "fewer than 6 months" collectors numbered 91, and 80 of them have majority regular cards, find that conditional probability.
+Answer:
+𝑃
+(
+regular majority
+∣
+<6 mo
+)
+=
+80
+/
+91
+≈
+0.879
+P(regular majority∣<6 mo)=80/91≈0.879. 
+AP Central
+
+8. Chi-Square Test (2024 FRQ #5c)
+Question: Name the appropriate hypothesis test for relationship between collecting duration and card type; state H₀ and Hₐ.
+Answer:
+Use a chi-square test of independence.
+
+H₀: No association between collecting duration and card type.
+
+Hₐ: There is an association. 
+AP Central
+
+9. Test Conclusion (2024 FRQ #5d)
+Question: Given p-value = 0.0075 and conditions met, what conclusion?
+Answer:
+Since 0.0075 < 0.05, reject H₀. There is evidence of a statistically significant association between months collecting and card-type majority. 
+AP Central
+
+10. Descriptive Statistics & Distribution Shape (2024 FRQ #6)
+Question: Based on a dotplot and summary stats for whistle prices, describe shape and identify outliers using 1.5×IQR rule.
+Answer:
+Describe skewness (e.g., symmetric, right/left skew), modality, spread using summary stats. For outliers: calculate IQR, then any point beyond Q1 – 1.5×IQR or Q3 + 1.5×IQR is an outlier. 
+
+
+
+Put these 10 questions for Algebra 2 Honors: 
+
+1. Rational Expression Simplification
+Question: Simplify the expression 
+𝑥
+2
+−
+9
+𝑥
+2
+−
+5
+𝑥
++
+6
+x 
+2
+ −5x+6
+x 
+2
+ −9
+​
+ . Also state any restrictions on 
+𝑥
+x.
+Answer:
+Factor numerator and denominator:
+
+(
+𝑥
+−
+3
+)
+(
+𝑥
++
+3
+)
+(
+𝑥
+−
+2
+)
+(
+𝑥
+−
+3
+)
+=
+𝑥
++
+3
+𝑥
+−
+2
+,
+(x−2)(x−3)
+(x−3)(x+3)
+​
+ = 
+x−2
+x+3
+​
+ ,
+with restrictions 
+𝑥
+≠
+2
+,
+3
+x
+
+=2,3 (to avoid division by zero).
+
+2. Piecewise Function Evaluation & Domain
+Question: Given
+
+𝑓
+(
+𝑥
+)
+=
+{
+2
+𝑥
++
+1
+,
+𝑥
+≤
+0
+,
+𝑥
+2
+−
+4
+,
+𝑥
+>
+0
+,
+f(x)={ 
+2x+1,
+x 
+2
+ −4,
+​
+  
+x≤0,
+x>0,
+​
+ 
+find 
+𝑓
+(
+−
+2
+)
+f(−2), 
+𝑓
+(
+3
+)
+f(3), and state the domain of 
+𝑓
+f.
+Answer:
+
+𝑓
+(
+−
+2
+)
+=
+2
+(
+−
+2
+)
++
+1
+=
+−
+3
+f(−2)=2(−2)+1=−3
+
+𝑓
+(
+3
+)
+=
+3
+2
+−
+4
+=
+5
+f(3)=3 
+2
+ −4=5
+
+Domain is all real numbers.
+
+3. Quadratic Vertex Form Conversion
+Question: Rewrite 
+𝑦
+=
+2
+𝑥
+2
+−
+8
+𝑥
++
+3
+y=2x 
+2
+ −8x+3 in vertex form and identify the vertex.
+Answer:
+Complete the square:
+
+𝑦
+=
+2
+(
+𝑥
+2
+−
+4
+𝑥
+)
++
+3
+=
+2
+[
+(
+𝑥
+−
+2
+)
+2
+−
+4
+]
++
+3
+=
+2
+(
+𝑥
+−
+2
+)
+2
+−
+8
++
+3
+=
+2
+(
+𝑥
+−
+2
+)
+2
+−
+5.
+y=2(x 
+2
+ −4x)+3=2[(x−2) 
+2
+ −4]+3=2(x−2) 
+2
+ −8+3=2(x−2) 
+2
+ −5.
+Vertex: 
+(
+2
+,
+−
+5
+)
+(2,−5).
+
+4. Complex Number Arithmetic
+Question: Compute 
+(
+2
++
+3
+𝑖
+)
+(
+1
+−
+4
+𝑖
+)
+(2+3i)(1−4i).
+Answer:
+Use FOIL:
+
+2
+⋅
+1
++
+2
+⋅
+(
+−
+4
+𝑖
+)
++
+3
+𝑖
+⋅
+1
+−
+3
+𝑖
+⋅
+4
+𝑖
+=
+2
+−
+8
+𝑖
++
+3
+𝑖
+−
+12
+𝑖
+2
+=
+2
+−
+5
+𝑖
++
+12
+=
+14
+−
+5
+𝑖
+.
+2⋅1+2⋅(−4i)+3i⋅1−3i⋅4i=2−8i+3i−12i 
+2
+ =2−5i+12=14−5i.
+5. Exponential & Logarithmic Equations
+Question: Solve for 
+𝑥
+x: 
+5
+2
+𝑥
+−
+1
+=
+125
+5 
+2x−1
+ =125.
+Answer:
+Recognize 
+125
+=
+5
+3
+125=5 
+3
+ . So 
+2
+𝑥
+−
+1
+=
+3
+2x−1=3 leads to 
+𝑥
+=
+2
+x=2.
+
+6. Inverse Function Determination
+Question: Find the inverse of 
+𝑓
+(
+𝑥
+)
+=
+3
+𝑥
+−
+2
+𝑥
++
+1
+f(x)= 
+x+1
+3x−2
+​
+ , and state its domain.
+Answer:
+Let 
+𝑦
+=
+3
+𝑥
+−
+2
+𝑥
++
+1
+y= 
+x+1
+3x−2
+​
+ . Solve for 
+𝑥
+x:
+
+𝑦
+(
+𝑥
++
+1
+)
+=
+3
+𝑥
+−
+2
+  
+⟹
+  
+𝑥
+𝑦
++
+𝑦
+=
+3
+𝑥
+−
+2
+  
+⟹
+  
+𝑦
++
+2
+=
+𝑥
+(
+3
+−
+𝑦
+)
+  
+⟹
+  
+𝑥
+=
+𝑦
++
+2
+3
+−
+𝑦
+.
+y(x+1)=3x−2⟹xy+y=3x−2⟹y+2=x(3−y)⟹x= 
+3−y
+y+2
+​
+ .
+Thus, 
+𝑓
+−
+1
+(
+𝑥
+)
+=
+𝑥
++
+2
+3
+−
+𝑥
+f 
+−1
+ (x)= 
+3−x
+x+2
+​
+ , with domain 
+𝑥
+≠
+3
+x
+
+=3.
+
+7. Polynomial Long Division
+Question: Divide 
+𝑥
+3
++
+2
+𝑥
+2
+−
+𝑥
+−
+2
+x 
+3
+ +2x 
+2
+ −x−2 by 
+𝑥
+−
+1
+x−1.
+Answer:
+By synthetic or long division:
+
+Synthetic with root 
+𝑥
+=
+1
+x=1: coefficients 1, 2, -1, -2 → bring down 1; multiply 1 by 1 → 1; add to 2 → 3; multiply 3 by 1 → 3; add to -1 → 2; multiply 2 by 1 → 2; add to -2 → 0.
+
+Quotient: 
+𝑥
+2
++
+3
+𝑥
++
+2
+x 
+2
+ +3x+2, remainder 0. So:
+
+𝑥
+3
++
+2
+𝑥
+2
+−
+𝑥
+−
+2
+𝑥
+−
+1
+=
+𝑥
+2
++
+3
+𝑥
++
+2.
+x−1
+x 
+3
+ +2x 
+2
+ −x−2
+​
+ =x 
+2
+ +3x+2.
+8. Absolute Value Equation
+Question: Solve 
+∣
+2
+𝑥
+−
+5
+∣
+=
+7
+∣2x−5∣=7.
+Answer:
+Set up two cases:
+
+2
+𝑥
+−
+5
+=
+7
+2x−5=7 → 
+2
+𝑥
+=
+12
+2x=12 → 
+𝑥
+=
+6
+x=6
+
+2
+𝑥
+−
+5
+=
+−
+7
+2x−5=−7 → 
+2
+𝑥
+=
+−
+2
+2x=−2 → 
+𝑥
+=
+−
+1
+x=−1
+
+9. Arithmetic Sequence Word Problem
+Question: A sequence increases by 4 each time and the first term is 7. Write a formula for the 
+𝑛
+n-th term and find the 20th term.
+Answer:
+Arithmetic sequence: 
+𝑎
+𝑛
+=
+7
++
+(
+𝑛
+−
+1
+)
+⋅
+4
+=
+4
+𝑛
++
+3
+a 
+n
+​
+ =7+(n−1)⋅4=4n+3. Then 
+𝑎
+20
+=
+4
+(
+20
+)
++
+3
+=
+83
+a 
+20
+​
+ =4(20)+3=83.
+
+10. Exponential Modeling
+Question: The population of a town grows according to 
+𝑃
+=
+5000
+⋅
+(
+1.02
+)
+𝑡
+P=5000⋅(1.02) 
+t
+ , where 
+𝑡
+t is in years. What is the population after 10 years?
+Answer:
+Compute:
+
+𝑃
+(
+10
+)
+=
+5000
+⋅
+(
+1.02
+)
+10
+≈
+5000
+⋅
+1.21899
+≈
+6095.
+P(10)=5000⋅(1.02) 
+10
+ ≈5000⋅1.21899≈6095.
+Approximately 6,095 people.
+
+
+Put these 10 questions for Algebra 2 Regular: 
+
+1. Polynomial Graph Analysis
+Question: The graphs of two polynomials 
+𝑓
+f and 
+𝑔
+g are shown, and you can identify all their zeros.
+a) Explain why one is a 4th-degree polynomial and the other is not.
+b) Justify which function has a positive leading coefficient and which has a negative one.
+c) List the zeros of each function.
+d) Explain how they can share the same zeros despite different degrees.
+Answer:
+a) The 4th-degree must have up to four turning points or behave like 
+𝑥
+4
+x 
+4
+  as 
+𝑥
+→
+∞
+x→∞.
+b) If a curve rises on the right, its leading coefficient is positive; if it falls, negative.
+c) Zeros are the x-intercepts (stated from graph).
+d) They can share zeros if the 4th-degree has multiple (repeated) roots while the other is a lower-degree polynomial having only single multiplicity roots. 
+Docest
+
+2. Imaginary Powers & Equations
+Question:
+a) Simplify powers of 
+𝑖
+i: 
+𝑖
+,
+𝑖
+2
+,
+𝑖
+3
+,
+𝑖
+4
+i,i 
+2
+ ,i 
+3
+ ,i 
+4
+ .
+b) Evaluate 
+𝑖
+5
+i 
+5
+ .
+c) Solve the equation 
+𝑧
+2
++
+1
+=
+0
+z 
+2
+ +1=0.
+d) Find the product of the solutions from part (c).
+Answer:
+a) 
+𝑖
+=
+𝑖
+,
+𝑖
+2
+=
+−
+1
+,
+𝑖
+3
+=
+−
+𝑖
+,
+𝑖
+4
+=
+1
+i=i,i 
+2
+ =−1,i 
+3
+ =−i,i 
+4
+ =1.
+b) 
+𝑖
+5
+=
+𝑖
+×
+𝑖
+4
+=
+𝑖
+i 
+5
+ =i×i 
+4
+ =i.
+c) Solutions are 
+𝑧
+=
+𝑖
+z=i and 
+𝑧
+=
+−
+𝑖
+z=−i.
+d) Product: 
+(
+𝑖
+)
+(
+−
+𝑖
+)
+=
+−
+𝑖
+2
+=
+1
+(i)(−i)=−i 
+2
+ =1. 
+Docest
+
+3. Systems via Matrices (Mixtures)
+Question: A cleaner has 70% water, 26% active chemicals, 4% scent; another has 72% water, 25% active, 3% scent; a third has 73% water, 27% active chemicals. They have supplies: 5,500 g water, 2,000 g active, 130 g scent.
+a) Set up a matrix system.
+b) Solve how many grams of each cleaner can be made.
+Answer:
+a) Use a 3×3 coefficient matrix (percentages) times vector of batch quantities = resource vector.
+b) Solve via matrix methods (e.g., inverse or elimination) to find batch amounts. 
+Docest
+
+4. Polynomial Behavior & Extrema
+Question: A polynomial function 
+ℎ
+(
+𝑥
+)
+h(x) is graphed.
+a) What is its degree (justify)?
+b) Estimate its absolute minimum.
+c) Approximate its maximum on the given interval.
+d) Determine its range.
+Answer:
+a) Degree deduced by number of rises/falls or turning points.
+b) Identify lowest point on graph.
+c) Highest point within interval.
+d) Range: from lowest to highest y-value observed. 
+Docest
+
+5. Transforming Rational Expressions
+Question: Rewrite the expression 
+𝑓
+(
+𝑥
+)
+=
+2
+𝑥
++
+1
+𝑥
+−
+1
+f(x)= 
+x−1
+2x+1
+​
+  in the form 
+𝑞
+(
+𝑥
+)
++
+𝑟
+𝑥
+−
+1
+q(x)+ 
+x−1
+r
+​
+ . Explain how that reveals the horizontal asymptote.
+Answer:
+Divide: 
+2
+𝑥
++
+1
+=
+2
+(
+𝑥
+−
+1
+)
++
+3
+2x+1=2(x−1)+3, so 
+𝑓
+(
+𝑥
+)
+=
+2
++
+3
+𝑥
+−
+1
+f(x)=2+ 
+x−1
+3
+​
+ . The horizontal asymptote is 
+𝑦
+=
+2
+y=2. 
+FlipHTML5
+
+6. Binomial Expansion & Pascal’s Triangle
+Question: Expand 
+(
+2
+𝑥
+−
+1
+)
+4
+(2x−1) 
+4
+  using Pascal’s Triangle. What is the middle term in the expansion of 
+(
+𝑥
+2
++
+2
+)
+18
+(x 
+2
+ +2) 
+18
+ ?
+Answer:
+Use coefficients from 1,4,6,4,1: 
+(
+2
+𝑥
+)
+4
+−
+4
+(
+2
+𝑥
+)
+3
++
+6
+(
+2
+𝑥
+)
+2
+−
+4
+(
+2
+𝑥
+)
++
+1
+(2x) 
+4
+ −4(2x) 
+3
+ +6(2x) 
+2
+ −4(2x)+1. For the middle term of 
+(
+𝑥
+2
++
+2
+)
+18
+(x 
+2
+ +2) 
+18
+ : the 10th term (index 9) has coefficient 
+(
+18
+9
+)
+⋅
+(
+𝑥
+2
+)
+9
+⋅
+2
+9
+( 
+9
+18
+​
+ )⋅(x 
+2
+ ) 
+9
+ ⋅2 
+9
+ . 
+FlipHTML5
+
+7. Conic Sections Identification
+Question: Identify the conic and center/vertex:
+a) 
+4
+𝑥
+2
++
+36
+𝑦
+2
+=
+16
+4x 
+2
+ +36y 
+2
+ =16
+b) 
+𝑦
+=
+3
+𝑥
+2
+−
+6
+𝑥
++
+9
+y=3x 
+2
+ −6x+9 — find its vertex.
+Answer:
+a) Divide both sides by 16: 
+𝑥
+2
+4
++
+𝑦
+2
+4
+9
+=
+1
+4
+x 
+2
+ 
+​
+ + 
+9
+4
+​
+ 
+y 
+2
+ 
+​
+ =1. It’s an ellipse.
+b) Vertex via completing the square: 
+𝑦
+=
+3
+(
+𝑥
+2
+−
+2
+𝑥
+)
++
+9
+=
+3
+[
+(
+𝑥
+−
+1
+)
+2
+−
+1
+]
++
+9
+=
+3
+(
+𝑥
+−
+1
+)
+2
++
+6
+y=3(x 
+2
+ −2x)+9=3[(x−1) 
+2
+ −1]+9=3(x−1) 
+2
+ +6. Vertex: 
+(
+1
+,
+6
+)
+(1,6). 
+Caddell Prep
+
+8. Permutation & Multiple-Event Probability
+Question:
+a) Compute 
+7
+𝑃
+2
+7
+​
+ P 
+2
+​
+ .
+b) Two independent events: P(A) = 3/10, P(B) = 2/3. Find P(A and B).
+Answer:
+a) 
+7
+𝑃
+2
+=
+7
+×
+6
+=
+42
+7
+​
+ P 
+2
+​
+ =7×6=42.
+b) Assuming independence: 
+𝑃
+(
+𝐴
+∩
+𝐵
+)
+=
+3
+10
+×
+2
+3
+=
+1
+5
+P(A∩B)= 
+10
+3
+​
+ × 
+3
+2
+​
+ = 
+5
+1
+​
+ . 
+Caddell Prep
+
+9. Probability of None Occurring
+Question: If the chance of rain each of the next three days is 30%, what’s the probability it does not rain on all three days?
+Answer:
+Non-rain probability each day = 0.70. So probability none = 
+0.7
+3
+=
+0.343
+0.7 
+3
+ =0.343. 
+Caddell Prep
+
+10. Descriptive Statistics: Median & SD
+Question: For the data set {28, 26, 40, 37, 39, 29, 31, 33, 33, 33, 31, 36}, find the median and standard deviation.
+Answer:
+Sorted data: {26, 28, 29, 31, 31, 33, 33, 33, 36, 37, 39, 40}. Median = average of 6th and 7th terms: (33 + 33)/2 = 33. SD: compute using the standard formula—find mean, squared deviations, divide by n−1, then square root.
