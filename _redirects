@@ -1,3 +1,6 @@
 /status    https://axionindustries.betteruptime.com   301
 /health    https://axionindustries.betteruptime.com   301
 /healthcheck    https://axionindustries.betteruptime.com   301
+/status https://axionindustries.betteruptime.com   301
+/uptime https://axionindustries.betteruptime.com   301
+/version mszogovic.onrender.com/version 301
