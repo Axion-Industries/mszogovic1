@@ -4,10 +4,18 @@
 
 
 <script>
-  if (window.location.pathname !== '/' && window.location.pathname !== '/maintenance.html') {
-    window.location.href = '/maintenance.html';
+  // Normalize pathname by removing trailing slash
+  const path = window.location.pathname.replace(/\/$/, '');
+
+  // Allowed paths to show this page (root or exact file)
+  const allowedPaths = ['', '/down.html'];
+
+  if (!allowedPaths.includes(path)) {
+    // Redirect immediately to the allowed page
+    window.location.replace('/down.html');
   }
 </script>
+
 
 
 
