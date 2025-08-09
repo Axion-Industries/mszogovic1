@@ -153,29 +153,73 @@
   });
 </script>
 
-      <h2>Resources & Materials</h2>
-      <div class="pdf-container">
-        <div class="pdf-item">
-          <div class="pdf-info">
-            <h3>AP Statistics Formula Sheet</h3>
-            <p>Essential formulas and statistical tables for the AP exam</p>
-        <div class="box-item" onclick="window.location.href='ap-statistics-pdf.html'">
-          <div style="display: flex; align-items: center; gap: 15px;">
-            <img src="pdf-icon.png" alt="PDF Icon" class="pdf-icon">
-            <div>
-              <h3>AP Statistics Course Materials</h3>
-              <p>Complete AP Statistics course content including data analysis, probability distributions, sampling, and statistical inference.</p>
-            </div>
+<style>
+  #resourcesContent {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease;
+  }
 
-          <a href="#" class="pdf-link">
-            <svg class="pdf-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-            </svg>
-            View PDF
-          </a>
-          </div>
+  #resourcesContent.active {
+    max-height: 2000px; /* enough to show all items */
+  }
 
+  h2 {
+    cursor: pointer; /* make it clickable */
+  }
+
+  .pdf-container, .box-item {
+    transition: opacity 0.5s ease;
+    opacity: 0;
+  }
+
+  #resourcesContent.active .pdf-container,
+  #resourcesContent.active .box-item {
+    opacity: 1;
+  }
+</style>
+
+<h2 id="resourcesTitle" aria-expanded="false" aria-controls="resourcesContent">
+  Resources & Materials
+</h2>
+
+<div id="resourcesContent" role="region" aria-labelledby="resourcesTitle">
+  <div class="pdf-container">
+    <div class="pdf-item">
+      <div class="pdf-info">
+        <h3>AP Statistics Formula Sheet</h3>
+        <p>Essential formulas and statistical tables for the AP exam</p>
       </div>
+    </div>
+    <div class="box-item" onclick="window.location.href='ap-statistics-pdf.html'">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <img src="pdf-icon.png" alt="PDF Icon" class="pdf-icon">
+        <div>
+          <h3>AP Statistics Course Materials</h3>
+          <p>Complete AP Statistics course content including data analysis, probability distributions, sampling, and statistical inference.</p>
+        </div>
+        <a href="#" class="pdf-link">
+          <svg class="pdf-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+          </svg>
+          View PDF
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const resourcesTitle = document.getElementById('resourcesTitle');
+  const resourcesContent = document.getElementById('resourcesContent');
+
+  resourcesTitle.addEventListener('click', () => {
+    resourcesContent.classList.toggle('active');
+    const expanded = resourcesTitle.getAttribute('aria-expanded') === 'true';
+    resourcesTitle.setAttribute('aria-expanded', !expanded);
+  });
+</script>
+
 
         
 
