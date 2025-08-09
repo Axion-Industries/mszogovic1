@@ -1,5 +1,6 @@
 git config --global user.email "axionindustries.official@gmail.com"
 git config --global user.name "Axion Industries"
 git add .
-git commit -m "Attempted to fix the PDF failure."
+git commit -m "Change path from pdfs/ to root."
 git push origin main
+curl -X POST https://api.render.com/deploy/srv-d2af26je5dus73cplfc0?key=KMySwX2RZWI
