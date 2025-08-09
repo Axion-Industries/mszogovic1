@@ -110,6 +110,32 @@
             letter-spacing: 1px;
         }
 
+        /* Completion message box */
+        .completion-message {
+            background: rgba(50, 130, 184, 0.2);
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            animation: fadeIn 0.5s ease-out, pulse 2s ease-in-out infinite;
+            display: none;
+        }
+
+        .completion-message.show {
+            display: block;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(50, 130, 184, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(50, 130, 184, 0.8);
+            }
+        }
+
         /* Settings panel (hidden by default) */
         .settings {
             position: fixed;
@@ -158,6 +184,9 @@
         <h1>Maintenance Time</h1>
         <div class="clock" id="clock">00:00:00</div>
         <p class="footer">Sorry for the inconvenience — Axion Industries</p>
+        <div class="completion-message" id="completionMessage">
+            The website should be back up any minute.
+        </div>
     </div>
 
     <!-- Hidden settings panel (uncomment to show) -->
@@ -175,13 +204,13 @@
         // CONFIGURATION - Adjust these values
         // ==========================================
         
-        // Base time configuration - Change this to set the displayed time
-        // Format: 'YYYY-MM-DDTHH:MM:SSZ' (Z for UTC) or use local time
-        const BASE_TIME = '2025-08-08T20:00:00Z';
+        // TIMER CONFIGURATION - Set your countdown time here!
+        const COUNTDOWN_HOURS = 1;     // Set hours (0-23)
+        const COUNTDOWN_MINUTES = 30;   // Set minutes (0-59)
+        const COUNTDOWN_SECONDS = 0;  // Set seconds (0-59)
         
-        // To use local time instead: const BASE_TIME = new Date().toISOString();
-        // To add hours offset: const TIME_OFFSET = 5; // adds 5 hours
-        const TIME_OFFSET = 0; // hours to add/subtract from BASE_TIME
+        // Convert to total milliseconds
+        const TOTAL_TIME = (COUNTDOWN_HOURS * 3600 + COUNTDOWN_MINUTES * 60 + COUNTDOWN_SECONDS) * 1000;
         
         // Star animation settings
         const MAX_PARTICLES = 100; // Maximum number of stars (reduce for better performance)
@@ -190,28 +219,50 @@
         const ENABLE_STARS = true; // Set to false to disable star animation
         
         // ==========================================
-        // CLOCK IMPLEMENTATION
+        // COUNTDOWN TIMER IMPLEMENTATION
         // ==========================================
         
+        let timeRemaining = TOTAL_TIME;
+        let timerComplete = false;
+        const startTime = Date.now();
+        
         function updateClock() {
-            const baseDate = new Date(BASE_TIME);
-            const now = new Date();
+            if (timerComplete) return;
             
-            // Calculate time difference and apply offset
-            const timeDiff = now - new Date(BASE_TIME).getTime();
-            const displayTime = new Date(baseDate.getTime() + timeDiff + (TIME_OFFSET * 60 * 60 * 1000));
+            // Calculate elapsed time
+            const elapsed = Date.now() - startTime;
+            timeRemaining = Math.max(0, TOTAL_TIME - elapsed);
+            
+            // Convert to hours, minutes, seconds
+            const totalSeconds = Math.floor(timeRemaining / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
             
             // Format time as HH:MM:SS
-            const hours = String(displayTime.getHours()).padStart(2, '0');
-            const minutes = String(displayTime.getMinutes()).padStart(2, '0');
-            const seconds = String(displayTime.getSeconds()).padStart(2, '0');
+            const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             
-            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = formattedTime;
+            
+            // Check if timer is complete
+            if (timeRemaining === 0 && !timerComplete) {
+                timerComplete = true;
+                onTimerComplete();
+            }
         }
         
-        // Update clock immediately and then every second
+        function onTimerComplete() {
+            // Show completion message
+            const messageBox = document.getElementById('completionMessage');
+            messageBox.classList.add('show');
+            
+            // Optional: Add a subtle sound or additional effects here
+            console.log('Timer completed!');
+        }
+        
+        // Update clock immediately and then every 100ms for smooth countdown
         updateClock();
-        setInterval(updateClock, 1000);
+        setInterval(updateClock, 100);
         
         // ==========================================
         // STAR ANIMATION WITH CANVAS
