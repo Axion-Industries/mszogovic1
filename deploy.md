@@ -1,9 +1,6 @@
 git config --global user.email "axionindustries.official@gmail.com"
 git config --global user.name "Axion Industries"
 git add .
-git commit -m "Change path from pdfs/ to root."
+git commit -m "Change all PDF paths from pdfs/ to root."
 git push origin main
 curl -X POST https://api.render.com/deploy/srv-d2af26je5dus73cplfc0?key=KMySwX2RZWI
-
-
-export RENDER_API_KEY=rnd_EEDsF8M8mlABOjE2w4D0hwlDr7RI
