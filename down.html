@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site downtime page - Axion Industries">
+    <title>Site Maintenance - Axion Industries</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for easy theming */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #888888;
+            --accent-red: #ff3838;
+            --warning-amber: #ffb038;
+            --info-grey: #666666;
+            --border-color: #333333;
+            --glow-color: rgba(255, 56, 56, 0.2);
+            --star-color: rgba(255, 255, 255, 0.8);
+            --font-display: 'Orbitron', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-width: 1200px;
+        }
+
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Canvas for starfield */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        /* Main container */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Hero headline */
+        .hero-headline {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: -0.02em;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+
+        .hero-headline .emphasis {
+            color: var(--accent-red);
+            text-shadow: 0 0 20px var(--glow-color);
+            display: inline-block;
+            transform: scale(1.1);
+            margin-left: 0.2em;
+        }
+
+        /* Log box container */
+        .log-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5),
+                        inset 0 0 20px rgba(255, 255, 255, 0.02);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Log header */
+        .log-header {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Log content wrapper */
+        .log-wrapper {
+            display: flex;
+            height: 400px;
+            position: relative;
+        }
+
+        /* Line numbers */
+        .line-numbers {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            padding: 1rem 0.75rem;
+            user-select: none;
+            border-right: 1px solid var(--border-color);
+            min-width: 50px;
+            text-align: right;
+        }
+
+        /* Log content */
+        .log-content {
+            flex: 1;
+            overflow: auto;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            padding: 1rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* Custom scrollbar */
+        .log-content::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .log-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .log-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .log-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Log lines */
+        .log-line {
+            padding: 0.125rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .log-line.error {
+            color: var(--accent-red);
+        }
+
+        .log-line.warning {
+            color: var(--warning-amber);
+        }
+
+        .log-line.info {
+            color: var(--info-grey);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Accessibility - Skip to content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 10px;
+            left: 10px;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            #starfield {
+                display: none;
+            }
+            
+            .hero-headline .emphasis {
+                text-shadow: none;
+            }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .log-wrapper {
+                height: 300px;
+            }
+
+            .line-numbers {
+                min-width: 40px;
+                font-size: 0.75rem;
+                padding: 1rem 0.5rem;
+            }
+
+            .log-content {
+                font-size: 0.75rem;
+                padding: 1rem 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#log-box" class="skip-link">Skip to build logs</a>
+
+    <!-- Starfield canvas -->
+    <canvas id="starfield" aria-hidden="true"></canvas>
+
+    <!-- Main content container -->
+    <main class="container">
+        <!-- Hero headline -->
+        <h1 class="hero-headline" role="banner">
+            Sorry, we are Currently <span class="emphasis">Down</span>
+        </h1>
+
+        <!-- Runtime/Build log box -->
+        <div class="log-container" id="log-box" role="region" aria-label="Build logs" tabindex="0">
+            <div class="log-header">
+                <span>Build Output - Last updated: <span id="timestamp"></span></span>
+            </div>
+            <div class="log-wrapper">
+                <div class="line-numbers" aria-hidden="true">
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+                    <div>7</div>
+                    <div>8</div>
+                    <div>9</div>
+                    <div>10</div>
+                    <div>11</div>
+                    <div>12</div>
+                    <div>13</div>
+                    <div>14</div>
+                    <div>15</div>
+                    <div>16</div>
+                    <div>17</div>
+                    <div>18</div>
+                    <div>19</div>
+                    <div>20</div>
+                </div>
+                <div class="log-content" role="log" aria-live="polite">
+                    <!-- Placeholder logs - replace these with actual build logs -->
+                    <div class="log-line info">[INFO] Starting build process...</div>
+                    <div class="log-line info">[INFO] Checking dependencies...</div>
+                    <div class="log-line">✓ All dependencies resolved</div>
+                    <div class="log-line info">[INFO] Compiling TypeScript files...</div>
+                    <div class="log-line warning">[WARN] Deprecated API usage in module: auth.service.ts:42</div>
+                    <div class="log-line warning">[WARN] Consider migrating to the new authentication API</div>
+                    <div class="log-line">✓ TypeScript compilation complete</div>
+                    <div class="log-line info">[INFO] Running tests...</div>
+                    <div class="log-line error">[ERROR] Test suite failed: user.spec.ts</div>
+                    <div class="log-line error">[ERROR] Expected: 200, Received: 401</div>
+                    <div class="log-line error">[ERROR] at UserService.authenticate (user.service.ts:156:12)</div>
+                    <div class="log-line warning">[WARN] 3 tests skipped due to previous failures</div>
+                    <div class="log-line info">[INFO] Attempting rollback...</div>
+                    <div class="log-line">✓ Rollback initiated</div>
+                    <div class="log-line error">[ERROR] Database connection timeout: ECONNREFUSED</verify>
+                    <div class="log-line error">[ERROR] Unable to connect to primary database cluster</div>
+                    <div class="log-line info">[INFO] Switching to maintenance mode...</div>
+                    <div class="log-line">✓ Maintenance mode activated</div>
+                    <div class="log-line info">[INFO] Notifying operations team...</div>
+                    <div class="log-line">✓ Alert sent to on-call engineers</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <p>Sorry for the inconvenience — Axion Industries</p>
+    </footer>
+
+    <script>
+        // Update timestamp
+        document.getElementById('timestamp').textContent = new Date().toLocaleTimeString();
+
+        // Starfield animation
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+
+        // Performance settings - adjust these to tweak star performance
+        const MAX_STARS = 120; // Maximum number of stars
+        const STAR_SPEED = 0.02; // Base movement speed
+        const MOUSE_INFLUENCE = 0.15; // How much the mouse affects stars
+        const FPS_THRESHOLD = 30; // Disable on mobile if FPS drops below this
+
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Star pool
+        const stars = [];
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetMouseX = 0;
+        let targetMouseY = 0;
+        let animationId = null;
+        let lastTime = 0;
+        let fps = 60;
+
+        // Resize canvas
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        // Star class
+        class Star {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * STAR_SPEED;
+                this.speedY = (Math.random() - 0.5) * STAR_SPEED;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+
+            update() {
+                // Mouse influence with easing
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 200) {
+                    const force = (200 - distance) / 200;
+                    this.speedX += (dx / distance) * force * MOUSE_INFLUENCE;
+                    this.speedY += (dy / distance) * force * MOUSE_INFLUENCE;
+                }
+
+                // Apply friction
+                this.speedX *= 0.99;
+                this.speedY *= 0.99;
+
+                // Update position
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Wrap around screen
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Initialize stars
+        function initStars() {
+            stars.length = 0;
+            for (let i = 0; i < MAX_STARS; i++) {
+                stars.push(new Star());
+            }
+        }
+
+        // Animation loop
+        function animate(currentTime) {
+            animationId = requestAnimationFrame(animate);
+
+            // Calculate FPS
+            const deltaTime = currentTime - lastTime;
+            if (deltaTime > 0) {
+                fps = 1000 / deltaTime;
+            }
+            lastTime = currentTime;
+
+            // Skip rendering on mobile if FPS is too low
+            if (window.innerWidth < 768 && fps < FPS_THRESHOLD) {
+                return;
+            }
+
+            // Clear canvas
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Smooth mouse position
+            mouseX += (targetMouseX - mouseX) * 0.1;
+            mouseY += (targetMouseY - mouseY) * 0.1;
+
+            // Update and draw stars
+            stars.forEach(star => {
+                star.update();
+                star.draw();
+            });
+        }
+
+        // Mouse event handler with throttling
+        let mouseMoveThrottle = false;
+        function handleMouseMove(e) {
+            if (!mouseMoveThrottle) {
+                targetMouseX = e.clientX;
+                targetMouseY = e.clientY;
+                mouseMoveThrottle = true;
+                setTimeout(() => { mouseMoveThrottle = false; }, 16); // ~60fps
+            }
+        }
+
+        // Touch event handler
+        function handleTouchMove(e) {
+            if (e.touches.length > 0) {
+                targetMouseX = e.touches[0].clientX;
+                targetMouseY = e.touches[0].clientY;
+            }
+        }
+
+        // Initialize everything
+        if (!prefersReducedMotion) {
+            resizeCanvas();
+            initStars();
+            animate(0);
+
+            // Event listeners
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                initStars();
+            });
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('touchmove', handleTouchMove);
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+        });
+
+        // Make log area keyboard scrollable
+        const logContent = document.querySelector('.log-content');
+        document.getElementById('log-box').addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown') {
+                logContent.scrollTop += 50;
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                logContent.scrollTop -= 50;
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

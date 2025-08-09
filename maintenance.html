@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance - Axion Industries</title>
+    
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Configuration variables */
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #0f4c75;
+            --accent-color: #3282b8;
+            --text-color: #bbe1fa;
+            --bg-gradient-start: #0f0c29;
+            --bg-gradient-mid: #302b63;
+            --bg-gradient-end: #24243e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Canvas for star animation */
+        #starCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Main container */
+        .maintenance-container {
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 4rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 10;
+            animation: fadeIn 1s ease-out;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--text-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .clock {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin: 2rem 0;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(50, 130, 184, 0.5);
+            transition: text-shadow 0.3s ease;
+        }
+
+        .clock:hover {
+            text-shadow: 0 0 30px rgba(50, 130, 184, 0.8);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        /* Settings panel (hidden by default) */
+        .settings {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(26, 26, 46, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            z-index: 20;
+            display: none;
+        }
+
+        .settings.show {
+            display: block;
+        }
+
+        /* Accessibility - Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .maintenance-container {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+            }
+
+            .clock {
+                letter-spacing: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Star animation canvas -->
+    <canvas id="starCanvas"></canvas>
+
+    <!-- Main content -->
+    <div class="maintenance-container">
+        <h1>Maintenance Time</h1>
+        <div class="clock" id="clock">00:00:00</div>
+        <p class="footer">Sorry for the inconvenience — Axion Industries</p>
+    </div>
+
+    <!-- Hidden settings panel (uncomment to show) -->
+    <!--
+    <div class="settings show">
+        <h3>Settings</h3>
+        <p>TIME_OFFSET: <span id="timeOffset">0</span>h</p>
+        <p>MAX_PARTICLES: <span id="maxParticles">100</span></p>
+        <p>SPAWN_RATE: <span id="spawnRate">30</span>/s</p>
+    </div>
+    -->
+
+    <script>
+        // ==========================================
+        // CONFIGURATION - Adjust these values
+        // ==========================================
+        
+        // Base time configuration - Change this to set the displayed time
+        // Format: 'YYYY-MM-DDTHH:MM:SSZ' (Z for UTC) or use local time
+        const BASE_TIME = '2025-08-08T20:00:00Z';
+        
+        // To use local time instead: const BASE_TIME = new Date().toISOString();
+        // To add hours offset: const TIME_OFFSET = 5; // adds 5 hours
+        const TIME_OFFSET = 0; // hours to add/subtract from BASE_TIME
+        
+        // Star animation settings
+        const MAX_PARTICLES = 100; // Maximum number of stars (reduce for better performance)
+        const SPAWN_RATE = 30; // Max spawns per second
+        const PARTICLE_LIFETIME = 2000; // milliseconds
+        const ENABLE_STARS = true; // Set to false to disable star animation
+        
+        // ==========================================
+        // CLOCK IMPLEMENTATION
+        // ==========================================
+        
+        function updateClock() {
+            const baseDate = new Date(BASE_TIME);
+            const now = new Date();
+            
+            // Calculate time difference and apply offset
+            const timeDiff = now - new Date(BASE_TIME).getTime();
+            const displayTime = new Date(baseDate.getTime() + timeDiff + (TIME_OFFSET * 60 * 60 * 1000));
+            
+            // Format time as HH:MM:SS
+            const hours = String(displayTime.getHours()).padStart(2, '0');
+            const minutes = String(displayTime.getMinutes()).padStart(2, '0');
+            const seconds = String(displayTime.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        
+        // Update clock immediately and then every second
+        updateClock();
+        setInterval(updateClock, 1000);
+        
+        // ==========================================
+        // STAR ANIMATION WITH CANVAS
+        // ==========================================
+        
+        const canvas = document.getElementById('starCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Performance detection
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isLowPerf = navigator.deviceMemory && navigator.deviceMemory < 4;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        // Adjust settings for performance
+        const actualMaxParticles = (isMobile || isLowPerf) ? Math.floor(MAX_PARTICLES * 0.5) : MAX_PARTICLES;
+        const actualSpawnRate = (isMobile || isLowPerf) ? Math.floor(SPAWN_RATE * 0.5) : SPAWN_RATE;
+        
+        // Particle pool for performance
+        class StarParticle {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = 0;
+                this.y = 0;
+                this.vx = 0;
+                this.vy = 0;
+                this.size = 0;
+                this.alpha = 0;
+                this.life = 0;
+                this.active = false;
+            }
+            
+            spawn(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2 - 1;
+                this.size = Math.random() * 3 + 1;
+                this.alpha = 1;
+                this.life = PARTICLE_LIFETIME;
+                this.active = true;
+            }
+            
+            update(deltaTime) {
+                if (!this.active) return;
+                
+                this.life -= deltaTime;
+                if (this.life <= 0) {
+                    this.active = false;
+                    return;
+                }
+                
+                // Update position
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Apply gravity
+                this.vy += 0.05;
+                
+                // Fade out
+                this.alpha = this.life / PARTICLE_LIFETIME;
+            }
+            
+            draw(ctx) {
+                if (!this.active) return;
+                
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = '#bbe1fa';
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = '#3282b8';
+                
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.restore();
+            }
+        }
+        
+        // Initialize particle pool
+        const particles = [];
+        for (let i = 0; i < actualMaxParticles; i++) {
+            particles.push(new StarParticle());
+        }
+        
+        // Throttle spawning
+        let lastSpawnTime = 0;
+        const spawnInterval = 1000 / actualSpawnRate;
+        
+        // Mouse/touch position tracking
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        function handlePointerMove(e) {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX || e.touches[0].clientX;
+            mouseY = e.clientY || e.touches[0].clientY;
+            
+            // Throttled spawning
+            const now = performance.now();
+            if (now - lastSpawnTime > spawnInterval) {
+                spawnStar(mouseX, mouseY);
+                lastSpawnTime = now;
+            }
+        }
+        
+        function spawnStar(x, y) {
+            // Find inactive particle
+            for (let particle of particles) {
+                if (!particle.active) {
+                    particle.spawn(x, y);
+                    break;
+                }
+            }
+        }
+        
+        // Canvas setup and resize handling
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Event listeners
+        if (ENABLE_STARS && !prefersReducedMotion) {
+            window.addEventListener('mousemove', handlePointerMove);
+            window.addEventListener('touchmove', handlePointerMove);
+        }
+        
+        // Animation loop
+        let lastTime = performance.now();
+        let frameCount = 0;
+        let fps = 60;
+        
+        function animate(currentTime) {
+            const deltaTime = currentTime - lastTime;
+            lastTime = currentTime;
+            
+            // FPS calculation
+            frameCount++;
+            if (frameCount % 60 === 0) {
+                fps = Math.round(1000 / deltaTime);
+                // Reduce particles if FPS drops below 30
+                if (fps < 30 && particles.length > 50) {
+                    particles.splice(50);
+                }
+            }
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Update and draw particles
+            if (ENABLE_STARS && !prefersReducedMotion) {
+                for (let particle of particles) {
+                    particle.update(deltaTime);
+                    particle.draw(ctx);
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Start animation
+        if (ENABLE_STARS) {
+            requestAnimationFrame(animate);
+        }
+        
+        // Debug info (uncomment to see performance stats)
+        /*
+        setInterval(() => {
+            console.log(`FPS: ${fps}, Active particles: ${particles.filter(p => p.active).length}`);
+        }, 1000);
+        */
+    </script>
+</body>
+</html>
