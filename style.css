@@ -303,19 +303,16 @@ footer {
     body {
         padding: 20px 10px;
     }
-    
 
     .navbar {
         flex-direction: column;
         gap: 20px;
     }
-    
 
     .nav-links {
         flex-wrap: wrap;
         justify-content: center;
     }
-    
 
     .welcome-section p {
         font-size: 16px;
@@ -328,7 +325,6 @@ footer {
         transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
     }
-    
 
     a::after,
     .btn::before,
@@ -408,6 +404,8 @@ summary:hover {
     display: inline-block;
     margin-top: 30px;
     color: var(--link-color);
+}
+
 summary:focus {
     outline: 2px solid var(--link-underline-color);
     outline-offset: -2px;
@@ -510,6 +508,8 @@ summary:focus {
 
 .back-link:hover {
     text-decoration: underline;
+}
+
 .pdf-link:hover {
     color: var(--link-underline-color);
 }
@@ -583,4 +583,46 @@ summary:focus {
         break-inside: avoid;
         page-break-inside: avoid;
     }
+}
+
+.view-button {
+    border: 1px solid #000;
+    background: transparent;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.view-button::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: #000;
+    transition: width 0.28s ease;
+    z-index: 0;
+}
+
+.view-button span {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    transition: color 0.18s ease;
+}
+
+.view-button:hover::before {
+    width: 100%;
+}
+
+.view-button:hover span {
+    color: #fff;
+}
+
+.view-button:focus {
+    outline: 3px solid #000;
 }
