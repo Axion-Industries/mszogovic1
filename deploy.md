@@ -1,6 +1,6 @@
 git config --global user.email "axionindustries.official@gmail.com"
 git config --global user.name "Axion Industries"
 git add .
-git commit -m "Editde the new feature to the AP Stats page."
+git commit -m "Edited the new feature to the AP Stats page."
 git push origin main
 curl -X POST https://api.render.com/deploy/srv-d2af26je5dus73cplfc0?key=KMySwX2RZWI

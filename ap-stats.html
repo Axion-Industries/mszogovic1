@@ -34,13 +34,17 @@
   #courseContent.active {
     max-height: 1000px; /* enough to show content */
   }
+
+  h2 {
+    cursor: pointer; /* make it clickable */
+  }
 </style>
 
-<button id="courseOverviewBtn" aria-expanded="false" aria-controls="courseContent">
+<h2 id="courseOverviewTitle" aria-expanded="false" aria-controls="courseContent">
   Course Overview
-</button>
+</h2>
 
-<div id="courseContent" role="region" aria-labelledby="courseOverviewBtn">
+<div id="courseContent" role="region" aria-labelledby="courseOverviewTitle">
   <p>AP Statistics is equivalent to a one-semester, introductory, non-calculus-based college course in statistics. The course covers four major themes:</p>
   <section>
     <ul>
@@ -53,15 +57,16 @@
 </div>
 
 <script>
-  const btn = document.getElementById('courseOverviewBtn');
+  const title = document.getElementById('courseOverviewTitle');
   const content = document.getElementById('courseContent');
 
-  btn.addEventListener('click', () => {
+  title.addEventListener('click', () => {
     content.classList.toggle('active');
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', !expanded);
+    const expanded = title.getAttribute('aria-expanded') === 'true';
+    title.setAttribute('aria-expanded', !expanded);
   });
 </script>
+
 
 
 
