@@ -70,58 +70,88 @@
 
 
 
-      <h2>Key Topics</h2>
+<style>
+  #keyTopicsContent {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease;
+  }
 
-        </div>
-        
-        <div class="box-item">
-          <h3>Unit 1: Exploring Two-Variable Data</h3>
-          <p>Explore relationships between two variables through scatterplots, correlation, and linear regression.</p>
-        <div class="box-item">
-          <h3>Unit 1: Exploring One-Variable Data</h3>
-          <p>Learn to analyze distributions of quantitative and categorical data, including measures of center, spread, and position.</p>
-        </div>
-        
-        <div class="box-item">
-          <h3>Unit 2: Exploring Two-Variable Data</h3>
-          <p>Explore relationships between two variables through scatterplots, correlation, and linear regression.</p>
-        </div>
-        
-        <div class="box-item">
-          <h3>Unit 3: Collecting Data</h3>
-          <p>Understand methods for collecting data through sampling techniques and experimental design.</p>
-        </div>
-        
-        <div class="box-item">
-          <h3>Unit 4: Probability, Random Variables, and Probability Distributions</h3>
-          <p>Study probability concepts, random variables, and common probability distributions.</p>
-        </div>
-        
-        <div class="box-item">
-          <h3>Unit 5: Sampling Distributions</h3>
-          <p>Learn about sampling distributions and the Central Limit Theorem.</p>
-        </div>
-        
-        <div class="box-item">
-          <h3>Unit 6: Inference for Categorical Data</h3>
-          <p>Perform statistical inference for proportions using confidence intervals and hypothesis tests.</p>
-        </div>
-        
-        <div class="box-item">
-          <h3>Unit 7: Inference for Quantitative Data</h3>
-          <p>Conduct statistical inference for means using t-procedures and confidence intervals.</p>
-        </div>
-        
-        <div class="box-item">
-          <h3>Unit 8: Inference for Categorical Data - Chi-Square</h3>
-          <p>Use chi-square tests for goodness of fit and independence.</p>
-        </div>
-        
-        <div class="box-item">
-          <h3>Unit 9: Inference for Quantitative Data - Slopes</h3>
-          <p>Perform inference about the slope of a regression line.</p>
-        </div>
-      </div>
+  #keyTopicsContent.active {
+    max-height: 2000px; /* enough to show all boxes */
+  }
+
+  h2 {
+    cursor: pointer; /* make it clickable */
+  }
+
+  .box-item {
+    transition: opacity 0.5s ease;
+    opacity: 0;
+  }
+
+  #keyTopicsContent.active .box-item {
+    opacity: 1;
+  }
+</style>
+
+<h2 id="keyTopicsTitle" aria-expanded="false" aria-controls="keyTopicsContent">
+  Key Topics
+</h2>
+
+<div id="keyTopicsContent" role="region" aria-labelledby="keyTopicsTitle">
+  <div class="box-item">
+    <h3>Unit 1: Exploring Two-Variable Data</h3>
+    <p>Explore relationships between two variables through scatterplots, correlation, and linear regression.</p>
+  </div>
+  <div class="box-item">
+    <h3>Unit 1: Exploring One-Variable Data</h3>
+    <p>Learn to analyze distributions of quantitative and categorical data, including measures of center, spread, and position.</p>
+  </div>
+  <div class="box-item">
+    <h3>Unit 2: Exploring Two-Variable Data</h3>
+    <p>Explore relationships between two variables through scatterplots, correlation, and linear regression.</p>
+  </div>
+  <div class="box-item">
+    <h3>Unit 3: Collecting Data</h3>
+    <p>Understand methods for collecting data through sampling techniques and experimental design.</p>
+  </div>
+  <div class="box-item">
+    <h3>Unit 4: Probability, Random Variables, and Probability Distributions</h3>
+    <p>Study probability concepts, random variables, and common probability distributions.</p>
+  </div>
+  <div class="box-item">
+    <h3>Unit 5: Sampling Distributions</h3>
+    <p>Learn about sampling distributions and the Central Limit Theorem.</p>
+  </div>
+  <div class="box-item">
+    <h3>Unit 6: Inference for Categorical Data</h3>
+    <p>Perform statistical inference for proportions using confidence intervals and hypothesis tests.</p>
+  </div>
+  <div class="box-item">
+    <h3>Unit 7: Inference for Quantitative Data</h3>
+    <p>Conduct statistical inference for means using t-procedures and confidence intervals.</p>
+  </div>
+  <div class="box-item">
+    <h3>Unit 8: Inference for Categorical Data - Chi-Square</h3>
+    <p>Use chi-square tests for goodness of fit and independence.</p>
+  </div>
+  <div class="box-item">
+    <h3>Unit 9: Inference for Quantitative Data - Slopes</h3>
+    <p>Perform inference about the slope of a regression line.</p>
+  </div>
+</div>
+
+<script>
+  const keyTitle = document.getElementById('keyTopicsTitle');
+  const keyContent = document.getElementById('keyTopicsContent');
+
+  keyTitle.addEventListener('click', () => {
+    keyContent.classList.toggle('active');
+    const expanded = keyTitle.getAttribute('aria-expanded') === 'true';
+    keyTitle.setAttribute('aria-expanded', !expanded);
+  });
+</script>
 
       <h2>Resources & Materials</h2>
       <div class="pdf-container">
