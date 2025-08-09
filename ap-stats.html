@@ -25,17 +25,6 @@
       <p>Welcome to AP Statistics! This course introduces students to the major concepts and tools for collecting, analyzing, and drawing conclusions from data. Students explore statistics through discussion and activities, and they learn to use technology to help them analyze data and check conditions.</p>
 
 <style>
-  #courseOverviewBtn {
-    background: none;
-    border: none;
-    font-size: 1.5em;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 0;
-    margin: 0 0 10px 0;
-    color: #0077cc;
-  }
-
   #courseContent {
     overflow: hidden;
     max-height: 0;
@@ -43,19 +32,13 @@
   }
 
   #courseContent.active {
-    max-height: 1000px; /* large enough for content */
-  }
-
-  section {
-    margin-top: 10px;
-    padding-left: 20px;
-  }
-  li {
-    margin-bottom: 8px;
+    max-height: 1000px; /* enough to show content */
   }
 </style>
 
-<button id="courseOverviewBtn" aria-expanded="false" aria-controls="courseContent">Course Overview</button>
+<button id="courseOverviewBtn" aria-expanded="false" aria-controls="courseContent">
+  Course Overview
+</button>
 
 <div id="courseContent" role="region" aria-labelledby="courseOverviewBtn">
   <p>AP Statistics is equivalent to a one-semester, introductory, non-calculus-based college course in statistics. The course covers four major themes:</p>
@@ -79,6 +62,7 @@
     btn.setAttribute('aria-expanded', !expanded);
   });
 </script>
+
 
 
       <h2>Key Topics</h2>
